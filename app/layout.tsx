@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { TASA_Orbiter } from "next/font/google";
 import "./globals.css";
+import LineGrid from "./components/LineGrid";
+import OverlayBackground from "./components/OverlayBackground";
+import Navbar from "./components/Navbar";
+import MouseTrailer from "./components/MouseTrail";
+import Footer from "./components/Footer";
+import VerticalMillimeters from "./components/VerticalMillimeters";
+import SmoothScroll from "./components/SmoothScroll";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const tasaOrbiter = TASA_Orbiter({
+  variable: "--font-tasa-orbiter",
   subsets: ["latin"],
 });
 
@@ -21,9 +23,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${tasaOrbiter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <SmoothScroll />
+        <Navbar />
+        <MouseTrailer />
+        <OverlayBackground />
+        <LineGrid />
+        <VerticalMillimeters />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
